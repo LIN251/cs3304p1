@@ -2,25 +2,30 @@
 public class P1Q2 {
 
     public static void main(String[] args) {
-        checkpasher("(22222GOOGLsharesbuy at maxxx");
-    }
 
-    public static void checkpasher(String input) {
+        checkpasher(
+            "(22222 GOOGL shares buy at max 5555) for account \"linzhang_zhouxiaolin112233\"",
+            0);
+    }
+    
+    
+    
+    public static void checkpasher(String input, int currentindex) {
         int length = input.length();
-        int index = 0;
+        int index = currentindex;
         char ch1 = input.charAt(0);
         if (ch1 != '(') {
             errorOutput(index, input);
         }
         index = checkTrade(index, length, input);
+        index = checkChar(' ', index, length, input);
         ch1 = input.charAt(index);
         if (ch1 == 'A') {
-            
+
             index = index + 1;
             if (index == length) {
                 errorOutput(index, input);
             }
-
             ch1 = input.charAt(index);
             if (ch1 == 'A') {
                 index = index + 1;
@@ -29,7 +34,6 @@ public class P1Q2 {
                 }
                 index = checkChar('P', index, length, input);
                 index = checkChar('L', index, length, input);
-          
 
             }
             else if (ch1 == 'M') {
@@ -49,7 +53,6 @@ public class P1Q2 {
             if (index == length) {
                 errorOutput(index, input);
             }
-
             ch1 = input.charAt(index);
             if (ch1 == 'B') {
                 index = index + 1;
@@ -104,7 +107,6 @@ public class P1Q2 {
             index = checkChar('S', index, length, input);
             index = checkChar('C', index, length, input);
             index = checkChar('O', index, length, input);
-
         }
         else if (ch1 == 'O') {
             index = index + 1;
@@ -129,13 +131,14 @@ public class P1Q2 {
         else {
             errorOutput(index, input);
         }
-
+        index = checkChar(' ', index, length, input);
         index = checkChar('s', index, length, input);
         index = checkChar('h', index, length, input);
         index = checkChar('a', index, length, input);
         index = checkChar('r', index, length, input);
         index = checkChar('e', index, length, input);
         index = checkChar('s', index, length, input);
+        index = checkChar(' ', index, length, input);
         ch1 = input.charAt(index);
         if (ch1 == 'b') {
             index = index + 1;
@@ -171,11 +174,63 @@ public class P1Q2 {
         else {
             errorOutput(index, input);
         }
+        ch1 = input.charAt(index);
+        index = checkChar(' ', index, length, input);
         index = checkTrade(index, length, input);
+        if (ch1 == ',') {
+            index = index + 1;
+            if (index == length) {
+                errorOutput(index, input);
+            }
+            checkpasher(input, index);
+        }
+        else {
+            index = checkChar(')', index, length, input);
+            index = checkChar(' ', index, length, input);
+            index = checkChar('f', index, length, input);
+            index = checkChar('o', index, length, input);
+            index = checkChar('r', index, length, input);
+            index = checkChar(' ', index, length, input);
+            index = checkChar('a', index, length, input);
+            index = checkChar('c', index, length, input);
+            index = checkChar('c', index, length, input);
+            index = checkChar('o', index, length, input);
+            index = checkChar('u', index, length, input);
+            index = checkChar('n', index, length, input);
+            index = checkChar('t', index, length, input);
+        }
+        index = checkChar(' ', index, length, input);
+        index = checkChar('"', index, length, input);
+        index = checkident(index, length, input);
 
-        System.out.println(index);
-        System.out.println("Come here already");
+        if (length > index + 1) {
+            index = index + 1;
+            errorOutput(index, input);
+        }
+        System.out.println("Input correct!");
+        System.out.println("Good to go");
+        System.out.println("call output function here.");
+        //rightoutput(input);
+    }
 
+
+    private static int checkident(int index, int length, String input) {
+        for (int i = index; i < input.length(); i++) {
+            if (Character.isDigit(input.charAt(i)) || input.charAt(i) == '_'
+                || String.valueOf(input.charAt(i)).matches("[A-Za-z]{1}")) {
+                index = index + 1;
+                if (index == length) {
+                    errorOutput(index, input);
+                }
+            }
+            else if (input.charAt(i) == '"') {
+                return index;
+            }
+            else {
+                errorOutput(index, input);
+            }
+        }
+        return index;
     }
 
 
@@ -231,7 +286,7 @@ public class P1Q2 {
     }
 
 
-    public void rightoutput(String s) {
+    public static void rightoutput(String s) {
         //////// `````
     }
 
