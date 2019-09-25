@@ -4,12 +4,11 @@ public class P1Q2 {
     public static void main(String[] args) {
 
         checkpasher(
-            "(22222 GOOGL shares buy at max 5555) for account \"linzhang_zhouxiaolin112233\"",
+            "(  99800       GOOGL       shares         buy at max      5555)     for account     \"linzhang_zhouxiaolin112233\"",
             0);
     }
-    
-    
-    
+
+
     public static void checkpasher(String input, int currentindex) {
         int length = input.length();
         int index = currentindex;
@@ -17,8 +16,14 @@ public class P1Q2 {
         if (ch1 != '(') {
             errorOutput(index, input);
         }
+        index = index + 1;
+        if (index == length) {
+            errorOutput(index, input);
+        }
+
+        index = infSpace(index, length, input);
         index = checkTrade(index, length, input);
-        index = checkChar(' ', index, length, input);
+        index = infSpace(index, length, input);
         ch1 = input.charAt(index);
         if (ch1 == 'A') {
 
@@ -131,14 +136,14 @@ public class P1Q2 {
         else {
             errorOutput(index, input);
         }
-        index = checkChar(' ', index, length, input);
+        index = infSpace(index, length, input);
         index = checkChar('s', index, length, input);
         index = checkChar('h', index, length, input);
         index = checkChar('a', index, length, input);
         index = checkChar('r', index, length, input);
         index = checkChar('e', index, length, input);
         index = checkChar('s', index, length, input);
-        index = checkChar(' ', index, length, input);
+        index = infSpace(index, length, input);
         ch1 = input.charAt(index);
         if (ch1 == 'b') {
             index = index + 1;
@@ -175,7 +180,7 @@ public class P1Q2 {
             errorOutput(index, input);
         }
         ch1 = input.charAt(index);
-        index = checkChar(' ', index, length, input);
+        index = infSpace(index, length, input);
         index = checkTrade(index, length, input);
         if (ch1 == ',') {
             index = index + 1;
@@ -186,7 +191,7 @@ public class P1Q2 {
         }
         else {
             index = checkChar(')', index, length, input);
-            index = checkChar(' ', index, length, input);
+            index = infSpace(index, length, input);
             index = checkChar('f', index, length, input);
             index = checkChar('o', index, length, input);
             index = checkChar('r', index, length, input);
@@ -199,7 +204,7 @@ public class P1Q2 {
             index = checkChar('n', index, length, input);
             index = checkChar('t', index, length, input);
         }
-        index = checkChar(' ', index, length, input);
+        index = infSpace(index, length, input);
         index = checkChar('"', index, length, input);
         index = checkident(index, length, input);
 
@@ -207,10 +212,29 @@ public class P1Q2 {
             index = index + 1;
             errorOutput(index, input);
         }
-        System.out.println("Input correct!");
         System.out.println("Good to go");
         System.out.println("call output function here.");
-        //rightoutput(input);
+        // rightoutput(input);
+    }
+
+
+    private static int infSpace(int index, int length, String input) {
+
+        char ch1;
+        while (index < length) {
+            ch1 = input.charAt(index);
+            if (ch1 == ' ') {
+                index = index + 1;
+                if (index == length) {
+                    errorOutput(index, input);
+                }
+            }
+            else {
+                return index;
+            }
+
+        }
+        return index;
     }
 
 
