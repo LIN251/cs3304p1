@@ -4,8 +4,14 @@ public class P1Q2 {
     public static void main(String[] args) {
 
         checkpasher(
-            "(  99800       GOOGL       shares         buy at max      5555)     for account     \"linzhang_zhouxiaolin112233\"",
+            "(  99800       GOOGL     shares        buy at max           5555,  "
+                + "99800 GOOGL shares sell at min 10, "
+                + "8888AAPLsharesbuy at max999  )    "
+                + "for account                \"linzhang_zhouxiaolin112233\"",
             0);
+        // test more space
+        // one space
+        // no space
     }
 
 
@@ -13,14 +19,15 @@ public class P1Q2 {
         int length = input.length();
         int index = currentindex;
         char ch1 = input.charAt(0);
-        if (ch1 != '(') {
-            errorOutput(index, input);
+        if (index == 0) {
+            if (ch1 != '(') {
+                errorOutput(index, input);
+            }
+            index = index + 1;
+            if (index == length) {
+                errorOutput(index, input);
+            }
         }
-        index = index + 1;
-        if (index == length) {
-            errorOutput(index, input);
-        }
-
         index = infSpace(index, length, input);
         index = checkTrade(index, length, input);
         index = infSpace(index, length, input);
@@ -179,14 +186,21 @@ public class P1Q2 {
         else {
             errorOutput(index, input);
         }
+
         ch1 = input.charAt(index);
         index = infSpace(index, length, input);
         index = checkTrade(index, length, input);
+        index = infSpace(index, length, input);
+        ch1 = input.charAt(index);
         if (ch1 == ',') {
+
             index = index + 1;
             if (index == length) {
                 errorOutput(index, input);
             }
+
+            index = infSpace(index, length, input);
+
             checkpasher(input, index);
         }
         else {
@@ -215,6 +229,7 @@ public class P1Q2 {
         System.out.println("Good to go");
         System.out.println("call output function here.");
         // rightoutput(input);
+        System.exit(0);
     }
 
 
