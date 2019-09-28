@@ -1,0 +1,5 @@
+<stock_trade_requests> → ‘(' <trade> {‘,’ <trade>} ‘) for account' <acct_ident>
+<trade> → ‘cancel shares'<stock_symbol>
+<stock_symbol> →
+'AAPL'|'HP'|'IBM'|'AMZN'|'MSFT'|'GOOGL'|'INTC'|'CSCO'|'ORCL'|'QCOM'
+<acct_ident> → ‘“‘alpha_char { alpha_char | digit | ’_’} ‘“‘
