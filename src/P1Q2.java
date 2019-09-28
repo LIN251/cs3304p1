@@ -3,6 +3,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Scanner;
 
+// javac P1Q2.java
+// java P1Q2 < FileWithDSLProgram.txt
 public class P1Q2 {
 
 	public static void main(String[] args)throws IOException   {
@@ -18,8 +20,9 @@ public class P1Q2 {
         String s = reader.readLine(); 
   
         // Printing the read line 
-        System.out.println(s);  
+        //System.out.println(s);  
 		checkpasher(s, 0);
+		//checkpasher(s, 0);
 		// test more space
 		// one space
 		// no space
@@ -221,8 +224,8 @@ public class P1Q2 {
 			index = index + 1;
 			errorOutput(index, input);
 		}
-		System.out.println("Good to go");
-		System.out.println("call output function here.");
+		//System.out.println("Good to go");
+		//System.out.println("call output function here.");
 		rightoutput(input);
 		System.exit(0);
 	}
