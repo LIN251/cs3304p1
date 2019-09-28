@@ -6,23 +6,25 @@ import java.util.Scanner;
 // javac P1Q2.java
 // java P1Q2 < FileWithDSLProgram.txt
 public class P1Q2 {
+	static boolean buy = false;
+	static boolean sell = false;
 
-	public static void main(String[] args)throws IOException   {
+	public static void main(String[] args) throws IOException {
 
-//		checkpasher("(  99800       GOOGL     shares        buy at max           5555,  "
-//				+ "99800 GOOGL shares sell at min 10, " + "8888AAPLsharesbuy at max999  )    "
-//				+ "for account                \"linzhang_zhouxiaolin112233\"", 0);
-		//Enter data using BufferReader 
-        BufferedReader reader =  
-                   new BufferedReader(new InputStreamReader(System.in)); 
-        //(  99800       GOOGL     shares        buy at max           5555,  99800 GOOGL shares sell at min 10, 8888AAPLsharesbuy at max999  )    for account                "linzhang_zhouxiaolin112233"
-        // Reading data using readLine 
-        String s = reader.readLine(); 
-  
-        // Printing the read line 
-        //System.out.println(s);  
-		checkpasher(s, 0);
-		//checkpasher(s, 0);
+		checkpasher("(  99800       GOOGL     shares        buy at max           5555,  "
+				+ "99800 GOOGL shares sell at min 10, " + "8888AAPLsharesbuy at max999  )    "
+				+ "for account                \"linzhang_zhouxiaolin112233\"", 0);
+		// Enter data using BufferReader
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+		// ( 99800 GOOGL shares buy at max 5555, 99800 GOOGL shares sell at min 10,
+		// 8888AAPLsharesbuy at max999 ) for account "linzhang_zhouxiaolin112233"
+		// Reading data using readLine
+		// String s = reader.readLine();
+
+		// Printing the read line
+		// System.out.println(s);
+		// checkpasher(s, 0);
+		// checkpasher(s, 0);
 		// test more space
 		// one space
 		// no space
@@ -224,8 +226,8 @@ public class P1Q2 {
 			index = index + 1;
 			errorOutput(index, input);
 		}
-		//System.out.println("Good to go");
-		//System.out.println("call output function here.");
+		// System.out.println("Good to go");
+		// System.out.println("call output function here.");
 		rightoutput(input);
 		System.exit(0);
 	}
@@ -316,24 +318,15 @@ public class P1Q2 {
 	}
 
 	public static void rightoutput(String s) {
-		//System.out.println(s);
+		// System.out.println(s);
 		String[] opr_account = s.split("for account");
-		String[] str_list = opr_account[0].replace('(', ' ').replace(')', ' ')
-				.replaceAll("buy at max", " buy ").replaceAll("sell at min", " sell ")
-				.replaceAll("AAPL", " AAPL ")
-				.replaceAll("HP", " HP ")
-				.replaceAll("IBM", " IBM ")
-				.replaceAll("AMZN", " AMZN ")
-				.replaceAll("MSFT", " MSFT ")
-				.replaceAll("GOOGL", " GOOGL ")
-				.replaceAll("INTC", " INTC ")
-				.replaceAll("CSCO", " CSCO ")
-				.replaceAll("ORCL", " ORCL ")
-				.replaceAll("QCOM", " QCOM ")
-				.replaceAll("shares", " ")
-				.split(",");
+		String[] str_list = opr_account[0].replace('(', ' ').replace(')', ' ').replaceAll("buy at max", " buy ")
+				.replaceAll("sell at min", " sell ").replaceAll("AAPL", " AAPL ").replaceAll("HP", " HP ")
+				.replaceAll("IBM", " IBM ").replaceAll("AMZN", " AMZN ").replaceAll("MSFT", " MSFT ")
+				.replaceAll("GOOGL", " GOOGL ").replaceAll("INTC", " INTC ").replaceAll("CSCO", " CSCO ")
+				.replaceAll("ORCL", " ORCL ").replaceAll("QCOM", " QCOM ").replaceAll("shares", " ").split(",");
 		String accountID = opr_account[1].replaceAll(" +", " ").replace('"', ' ').trim();
-		
+
 		String[][] str_token = new String[str_list.length][4];
 		String[] str_temp_token = new String[4];
 		for (int i = 0; i < str_list.length; i++) {
@@ -342,19 +335,31 @@ public class P1Q2 {
 			str_token[i][1] = str_temp_token[1];
 			str_token[i][2] = str_temp_token[2];
 			str_token[i][3] = str_temp_token[3];
-		}
-		
-		System.out.println("INSERT INTO BuyRequests (NumShares, Symbol, MaxPrice, AccountID)");
-		for (int i = 0; i < str_list.length; i++) {
-			if(str_token[i][2].equals("buy")) {
-				System.out.println("		VALUES ('" + str_token[i][0] + "','" + str_token[i][1] + "','" + str_token[i][3] + "','" + accountID + "')");
+			if(!buy && str_temp_token[2].equals("buy")) {
+				buy = true;
+			}
+			if(!sell && str_temp_token[2].equals("sell")) {
+				sell = true;
 			}
 		}
-		
-		System.out.println("INSERT INTO SellRequests(NumShares, Symbol, MinPrice, AccountID)");
-		for (int i = 0; i < str_list.length; i++) {
-			if(str_token[i][2].equals("sell")) {
-				System.out.println("		VALUES ('" + str_token[i][0] + "','" + str_token[i][1] + "','" + str_token[i][3] + "','" + accountID + "')");
+
+		if (buy) {
+			System.out.println("INSERT INTO BuyRequests (NumShares, Symbol, MaxPrice, AccountID)");
+			for (int i = 0; i < str_list.length; i++) {
+				if (str_token[i][2].equals("buy")) {
+					System.out.println("		VALUES ('" + str_token[i][0] + "','" + str_token[i][1] + "','"
+							+ str_token[i][3] + "','" + accountID + "')");
+				}
+			}
+		}
+
+		if (sell) {
+			System.out.println("INSERT INTO SellRequests(NumShares, Symbol, MinPrice, AccountID)");
+			for (int i = 0; i < str_list.length; i++) {
+				if (str_token[i][2].equals("sell")) {
+					System.out.println("		VALUES ('" + str_token[i][0] + "','" + str_token[i][1] + "','"
+							+ str_token[i][3] + "','" + accountID + "')");
+				}
 			}
 		}
 
