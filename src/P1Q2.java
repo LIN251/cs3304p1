@@ -3,6 +3,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Scanner;
 
+
+
+
 // javac P1Q2.java
 // java P1Q2 < FileWithDSLProgram.txt
 public class P1Q2 {
