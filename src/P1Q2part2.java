@@ -9,25 +9,16 @@ public class P1Q2part2 {
 // 'AAPL'|'HP'|'IBM'|'AMZN'|'MSFT'|'GOOGL'|'INTC'|'CSCO'|'ORCL'|'QCOM'
 // <acct_ident> ¡ú ¡®¡°¡®alpha_char { alpha_char | digit | ¡¯_¡¯} ¡®¡°¡®
 
-//Example:
+// Example:
 // "( cancel all GOOGL shares ) "for account \"linzhang_zhouxiaolin112233\""
 
     public static void main(String[] args) {
         cancelRequest cancelARequest = new cancelRequest();
         int index = 0;
-        //pass
+        // pass
         String input =
             "( cancel all GOOGL  shares ) for account \"linzhang_zhouxiaolin112233\"";
         cancelARequest.cancel(input, index);
-        //pass
-        String input3 =
-            "( cancel all    GOOGL  shares ,cancel all GOOGL shares) for account \"linzhang_zhouxiaolin112233\"";
-        cancelARequest.cancel(input3, index);
-        
-        //fail
-        String input2 =
-            "( cancel all    GOOGLsss  shares ,cancel all GOOGL shares) for account \"linzhang_zhouxiaolin112233\"";
-        cancelARequest.cancel(input3, index);
 
     }
 

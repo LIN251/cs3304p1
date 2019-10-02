@@ -2,7 +2,7 @@
 public class cancelRequest {
 // ( cancel all GOOGL shares ) for account "linzhang_zhouxiaolin112233"
 
-    public int cancel(String input, int index1) {
+    public void cancel(String input, int index1) {
         int length = input.length();
         int index = index1;
 
@@ -199,7 +199,7 @@ public class cancelRequest {
         // System.out.println("Good to go");
         // System.out.println("call output function here.");
         rightoutput(input);
-        return (0);
+        System.exit(0);
     }
 
 
