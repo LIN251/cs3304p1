@@ -221,7 +221,7 @@ public class addRequest {
             if (tempindex + 1 == input.length()) {
                 return tempindex;
             }
-            if(tempindex == -1) {
+            if (tempindex == -1) {
                 return -1;
             }
 
@@ -253,7 +253,7 @@ public class addRequest {
             rightoutput(input);
             System.out.println();
         }
-   
+
         return index;
 
     }
@@ -273,7 +273,7 @@ public class addRequest {
                 index = index + 1;
                 if (index == length) {
                     index = errorOutput(index, input);
-   
+
                 }
             }
             else {
@@ -295,7 +295,7 @@ public class addRequest {
                 index = index + 1;
                 if (index == length) {
                     index = errorOutput(index, input);
-                    if(index == -1) {
+                    if (index == -1) {
                         return -1;
                     }
                 }
@@ -305,7 +305,7 @@ public class addRequest {
             }
             else {
                 index = errorOutput(index, input);
-                if(index == -1) {
+                if (index == -1) {
                     return -1;
                 }
             }
@@ -321,7 +321,6 @@ public class addRequest {
         char ch1 = input.charAt(index);
         if (ch1 != c) {
             int tempres = errorOutput(index, input);
-            
 
             return tempres;
 
@@ -330,7 +329,7 @@ public class addRequest {
             index = index + 1;
             if (index == length) {
                 index = errorOutput(index, input);
-                if(index == -1) {
+                if (index == -1) {
                     return -1;
                 }
             }
@@ -345,7 +344,7 @@ public class addRequest {
         }
         if (index == length) {
             index = errorOutput(index, input);
-            if(index == -1) {
+            if (index == -1) {
                 return -1;
             }
         }
@@ -353,7 +352,7 @@ public class addRequest {
             index = index + 1;
             if (index == length) {
                 index = errorOutput(index, input);
-                if(index == -1) {
+                if (index == -1) {
                     return -1;
                 }
             }
@@ -361,7 +360,7 @@ public class addRequest {
                 index = index + 1;
                 if (index == length) {
                     index = errorOutput(index, input);
-                    if(index == -1) {
+                    if (index == -1) {
                         return -1;
                     }
                 }
@@ -369,7 +368,7 @@ public class addRequest {
         }
         else {
             index = errorOutput(index, input);
-            if(index == -1) {
+            if (index == -1) {
                 return -1;
             }
 
@@ -397,7 +396,6 @@ public class addRequest {
 
 
     public void rightoutput(String s) {
-        // System.out.println(s);
         String[] opr_account = s.split("for account");
         String[] str_list = opr_account[0].replace('(', ' ').replace(')', ' ')
             .replaceAll("buy at max", " buy ").replaceAll("sell at min",
@@ -438,13 +436,10 @@ public class addRequest {
                     System.out.println("        VALUES ('" + str_token[i][0]
                         + "','" + str_token[i][1] + "','" + str_token[i][3]
                         + "','" + accountID + "')");
-
                 }
-
             }
             if (0 == counter1) {
                 System.out.println("        No buy requests for this account");
-
             }
 
         }
@@ -458,13 +453,10 @@ public class addRequest {
                     System.out.println("        VALUES ('" + str_token[i][0]
                         + "','" + str_token[i][1] + "','" + str_token[i][3]
                         + "','" + accountID + "')");
-
                 }
-
             }
             if (0 == counter2) {
                 System.out.println("        No sell requests for this account");
-
             }
 
         }
