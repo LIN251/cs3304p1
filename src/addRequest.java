@@ -1,9 +1,6 @@
 
-import java.io.IOException;
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Scanner;
 
 public class addRequest {
     static boolean buy = false;
@@ -12,34 +9,47 @@ public class addRequest {
         System.in));
 
 
-    public void checkpasher(String input, int currentindex) {
+    public int checkpasher(String input, int currentindex) {
+
         int length = input.length();
         int index = currentindex;
+        if (index == -1) {
+            return -1;
+        }
         char ch1 = input.charAt(0);
+
         if (index == 0) {
             if (ch1 != '(') {
-                errorOutput(index, input);
+                index = errorOutput(index, input);
             }
             index = index + 1;
             if (index == length) {
-                errorOutput(index, input);
+                index = errorOutput(index, input);
             }
         }
         index = infSpace(index, length, input);
         index = checkTrade(index, length, input);
         index = infSpace(index, length, input);
+        if (index == -1) {
+            return -1;
+        }
         ch1 = input.charAt(index);
         if (ch1 == 'A') {
 
             index = index + 1;
             if (index == length) {
-                errorOutput(index, input);
+                index = errorOutput(index, input);
             }
+
+            if (index == -1) {
+                return -1;
+            }
+
             ch1 = input.charAt(index);
             if (ch1 == 'A') {
                 index = index + 1;
                 if (index == length) {
-                    errorOutput(index, input);
+                    index = errorOutput(index, input);
                 }
                 index = checkChar('P', index, length, input);
                 index = checkChar('L', index, length, input);
@@ -48,51 +58,54 @@ public class addRequest {
             else if (ch1 == 'M') {
                 index = index + 1;
                 if (index == length) {
-                    errorOutput(index, input);
+                    index = errorOutput(index, input);
                 }
                 index = checkChar('Z', index, length, input);
                 index = checkChar('N', index, length, input);
             }
             else {
-                errorOutput(index, input);
+                index = errorOutput(index, input);
             }
         }
         else if (ch1 == 'I') {
             index = index + 1;
             if (index == length) {
-                errorOutput(index, input);
+                index = errorOutput(index, input);
+            }
+            if (index == -1) {
+                return -1;
             }
             ch1 = input.charAt(index);
             if (ch1 == 'B') {
                 index = index + 1;
                 if (index == length) {
-                    errorOutput(index, input);
+                    index = errorOutput(index, input);
                 }
                 index = checkChar('M', index, length, input);
             }
             else if (ch1 == 'N') {
                 index = index + 1;
                 if (index == length) {
-                    errorOutput(index, input);
+                    index = errorOutput(index, input);
                 }
                 index = checkChar('T', index, length, input);
                 index = checkChar('C', index, length, input);
             }
             else {
-                errorOutput(index, input);
+                index = errorOutput(index, input);
             }
         }
         else if (ch1 == 'H') {
             index = index + 1;
             if (index == length) {
-                errorOutput(index, input);
+                index = errorOutput(index, input);
             }
             index = checkChar('P', index, length, input);
         }
         else if (ch1 == 'M') {
             index = index + 1;
             if (index == length) {
-                errorOutput(index, input);
+                index = errorOutput(index, input);
             }
             index = checkChar('S', index, length, input);
             index = checkChar('F', index, length, input);
@@ -101,7 +114,7 @@ public class addRequest {
         else if (ch1 == 'G') {
             index = index + 1;
             if (index == length) {
-                errorOutput(index, input);
+                index = errorOutput(index, input);
             }
             index = checkChar('O', index, length, input);
             index = checkChar('O', index, length, input);
@@ -111,7 +124,7 @@ public class addRequest {
         else if (ch1 == 'C') {
             index = index + 1;
             if (index == length) {
-                errorOutput(index, input);
+                index = errorOutput(index, input);
             }
             index = checkChar('S', index, length, input);
             index = checkChar('C', index, length, input);
@@ -120,7 +133,7 @@ public class addRequest {
         else if (ch1 == 'O') {
             index = index + 1;
             if (index == length) {
-                errorOutput(index, input);
+                index = errorOutput(index, input);
             }
             index = checkChar('R', index, length, input);
             index = checkChar('C', index, length, input);
@@ -130,7 +143,7 @@ public class addRequest {
         else if (ch1 == 'Q') {
             index = index + 1;
             if (index == length) {
-                errorOutput(index, input);
+                index = errorOutput(index, input);
             }
             index = checkChar('C', index, length, input);
             index = checkChar('O', index, length, input);
@@ -138,7 +151,7 @@ public class addRequest {
 
         }
         else {
-            errorOutput(index, input);
+            index = errorOutput(index, input);
         }
         index = infSpace(index, length, input);
         index = checkChar('s', index, length, input);
@@ -148,11 +161,14 @@ public class addRequest {
         index = checkChar('e', index, length, input);
         index = checkChar('s', index, length, input);
         index = infSpace(index, length, input);
+        if (index == -1) {
+            return -1;
+        }
         ch1 = input.charAt(index);
         if (ch1 == 'b') {
             index = index + 1;
             if (index == length) {
-                errorOutput(index, input);
+                index = errorOutput(index, input);
             }
             index = checkChar('u', index, length, input);
             index = checkChar('y', index, length, input);
@@ -167,7 +183,7 @@ public class addRequest {
         else if (ch1 == 's') {
             index = index + 1;
             if (index == length) {
-                errorOutput(index, input);
+                index = errorOutput(index, input);
             }
             index = checkChar('e', index, length, input);
             index = checkChar('l', index, length, input);
@@ -181,24 +197,34 @@ public class addRequest {
             index = checkChar('n', index, length, input);
         }
         else {
-            errorOutput(index, input);
+            index = errorOutput(index, input);
         }
-
+        if (index == -1) {
+            return -1;
+        }
         ch1 = input.charAt(index);
         index = infSpace(index, length, input);
         index = checkTrade(index, length, input);
         index = infSpace(index, length, input);
+        if (index == -1) {
+            return -1;
+        }
         ch1 = input.charAt(index);
         if (ch1 == ',') {
-
             index = index + 1;
             if (index == length) {
-                errorOutput(index, input);
+                index = errorOutput(index, input);
             }
 
             index = infSpace(index, length, input);
+            int tempindex = checkpasher(input, index);
+            if (tempindex + 1 == input.length()) {
+                return tempindex;
+            }
+            if(tempindex == -1) {
+                return -1;
+            }
 
-            checkpasher(input, index);
         }
         else {
             index = checkChar(')', index, length, input);
@@ -218,14 +244,18 @@ public class addRequest {
         index = infSpace(index, length, input);
         index = checkChar('"', index, length, input);
         index = checkident(index, length, input);
-
         if (length > index + 1) {
             index = index + 1;
-            errorOutput(index, input);
+            index = errorOutput(index, input);
         }
 
-        rightoutput(input);
-        System.exit(0);
+        if (index >= 0) {
+            rightoutput(input);
+            System.out.println();
+        }
+   
+        return index;
+
     }
 
 
@@ -233,14 +263,17 @@ public class addRequest {
      * 
      */
     private int infSpace(int index, int length, String input) {
-
+        if (index == -1) {
+            return -1;
+        }
         char ch1;
         while (index < length) {
             ch1 = input.charAt(index);
             if (ch1 == ' ') {
                 index = index + 1;
                 if (index == length) {
-                    errorOutput(index, input);
+                    index = errorOutput(index, input);
+   
                 }
             }
             else {
@@ -253,19 +286,28 @@ public class addRequest {
 
 
     private int checkident(int index, int length, String input) {
+        if (index == -1) {
+            return -1;
+        }
         for (int i = index; i < input.length(); i++) {
             if (Character.isDigit(input.charAt(i)) || input.charAt(i) == '_'
                 || String.valueOf(input.charAt(i)).matches("[A-Za-z]{1}")) {
                 index = index + 1;
                 if (index == length) {
-                    errorOutput(index, input);
+                    index = errorOutput(index, input);
+                    if(index == -1) {
+                        return -1;
+                    }
                 }
             }
             else if (input.charAt(i) == '"') {
                 return index;
             }
             else {
-                errorOutput(index, input);
+                index = errorOutput(index, input);
+                if(index == -1) {
+                    return -1;
+                }
             }
         }
         return index;
@@ -273,14 +315,24 @@ public class addRequest {
 
 
     private int checkChar(char c, int index, int length, String input) {
+        if (index == -1) {
+            return -1;
+        }
         char ch1 = input.charAt(index);
         if (ch1 != c) {
-            errorOutput(index, input);
+            int tempres = errorOutput(index, input);
+            
+
+            return tempres;
+
         }
         else {
             index = index + 1;
             if (index == length) {
-                errorOutput(index, input);
+                index = errorOutput(index, input);
+                if(index == -1) {
+                    return -1;
+                }
             }
         }
         return index;
@@ -288,39 +340,59 @@ public class addRequest {
 
 
     private int checkTrade(int index, int length, String input) {
-        index = index + 1;
+        if (index == -1) {
+            return -1;
+        }
         if (index == length) {
-            errorOutput(index, input);
+            index = errorOutput(index, input);
+            if(index == -1) {
+                return -1;
+            }
         }
         if (Character.isDigit(input.charAt(index))) {
             index = index + 1;
             if (index == length) {
-                errorOutput(index, input);
+                index = errorOutput(index, input);
+                if(index == -1) {
+                    return -1;
+                }
             }
             while (Character.isDigit(input.charAt(index))) {
                 index = index + 1;
                 if (index == length) {
-                    errorOutput(index, input);
+                    index = errorOutput(index, input);
+                    if(index == -1) {
+                        return -1;
+                    }
                 }
             }
         }
         else {
-            errorOutput(index, input);
+            index = errorOutput(index, input);
+            if(index == -1) {
+                return -1;
+            }
 
         }
         return index;
     }
 
 
-    public void errorOutput(int index, String input) {
-        System.out.println(input);
-        StringBuilder result = new StringBuilder();
-        for (int i = 0; i < index; i++) {
-            result.append(" ");
+    public int errorOutput(int index, String input) {
+        if (index == 0) {
+            return -1;
         }
-        result.append("^");
-        System.out.println(result);
-        System.exit(0);
+        if (index != -1) {
+            System.out.println(input);
+            StringBuilder result = new StringBuilder();
+            for (int i = 0; i < index; i++) {
+                result.append(" ");
+            }
+            result.append("^");
+            System.out.println(result);
+            return -1;
+        }
+        return -1;
     }
 
 
@@ -354,17 +426,27 @@ public class addRequest {
                 sell = true;
             }
         }
+        int counter1 = 0;
+        int counter2 = 0;
 
         if (buy) {
             System.out.println(
                 "INSERT INTO BuyRequests (NumShares, Symbol, MaxPrice, AccountID)");
             for (int i = 0; i < str_list.length; i++) {
                 if (str_token[i][2].equals("buy")) {
+                    counter1++;
                     System.out.println("        VALUES ('" + str_token[i][0]
                         + "','" + str_token[i][1] + "','" + str_token[i][3]
                         + "','" + accountID + "')");
+
                 }
+
             }
+            if (0 == counter1) {
+                System.out.println("        No buy requests for this account");
+
+            }
+
         }
 
         if (sell) {
@@ -372,11 +454,19 @@ public class addRequest {
                 "INSERT INTO SellRequests(NumShares, Symbol, MinPrice, AccountID)");
             for (int i = 0; i < str_list.length; i++) {
                 if (str_token[i][2].equals("sell")) {
+                    counter2++;
                     System.out.println("        VALUES ('" + str_token[i][0]
                         + "','" + str_token[i][1] + "','" + str_token[i][3]
                         + "','" + accountID + "')");
+
                 }
+
             }
+            if (0 == counter2) {
+                System.out.println("        No sell requests for this account");
+
+            }
+
         }
     }
 }
