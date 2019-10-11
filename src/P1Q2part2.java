@@ -17,6 +17,14 @@ public class P1Q2part2 {
         // test wrong input
         System.out.println("Enter: ");
         System.out.println(
+            "( cancel all GOOGL shares , cancel all AMZN shares , cancel all CSCO shares ) for account \"cs3304ID\"");
+        System.out.println("Output: ");
+
+        String input81 =
+            "( cancel all GOOGL shares , cancel all AMZN shares , cancel all CSCO shares ) for account \"cs3304ID\"";
+        cancelARequest.cancel(input81, index);
+        System.out.println("Enter: ");
+        System.out.println(
             "( cancel all GOOGL  shares45 ) for account \"linzhang_zhouxiaolin112233\"");
         System.out.println("Output: ");
         String input =
@@ -120,12 +128,21 @@ public class P1Q2part2 {
 
         System.out.println("Enter: ");
         System.out.println(
-            "( cancel all GOOGL shares , cancel all AMZN shares , cancel all CSCO shares ) for account \"6___ID\"");
+            "( cancel all GOOGL shares , cancel all AMZN shares , cancel all CSCO shares ) for account \"3304ID\"");
         System.out.println("Output: ");
 
-        String input81 =
-            "( cancel all GOOGL shares , cancel all AMZN shares , cancel all CSCO shares ) for account \"6___ID\"";
-        cancelARequest.cancel(input81, index);
+        String input82 =
+            "( cancel all GOOGL shares , cancel all AMZN shares , cancel all CSCO shares ) for account \"3304ID\"";
+        cancelARequest.cancel(input82, index);
+
+        System.out.println("Enter: ");
+        System.out.println(
+            "( cancel all GOOGL shares , cancel all AMZN shares , cancel all CSCO shares ) for account \"_3304ID\"");
+        System.out.println("Output: ");
+
+        String input85 =
+            "( cancel all GOOGL shares , cancel all AMZN shares , cancel all CSCO shares ) for account \"_3304ID\"";
+        cancelARequest.cancel(input85, index);
 
         Scanner inputUser = new Scanner(System.in);
         System.out.println("For User Test:");
